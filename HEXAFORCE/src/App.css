@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #07110c;
+  color: white;
+}
+
+/* LOGIN / SIGNUP / FORGOT PASSWORD */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #07110c;
+}
+
+.login-box {
+  width: 420px;
+  padding: 40px;
+  background: #101c15;
+  border: 1px solid #244d35;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.login-box h1 {
+  text-align: center;
+  color: #42e879;
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #9ca89f;
+  margin-bottom: 30px;
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.login-box label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 7px;
+  color: #d8e3dc;
+}
+
+.login-box input,
+.login-box select {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid #31583f;
+  background: #07110c;
+  color: white;
+  font-size: 15px;
+}
+
+.login-box input:focus,
+.login-box select:focus {
+  outline: none;
+  border-color: #42e879;
+}
+
+.login-button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 25px;
+  border: none;
+  border-radius: 8px;
+  background: #42e879;
+  color: #07110c;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: #63f293;
+}
+
+.link-button {
+  display: block;
+  margin: 18px auto;
+  border: none;
+  background: none;
+  color: #42e879;
+  cursor: pointer;
+}
+
+.signup-text {
+  text-align: center;
+  color: #9ca89f;
+}
+
+.signup-button {
+  border: none;
+  background: none;
+  color: #42e879;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+  min-height: 100vh;
+  background: #07110c;
+}
+
+.dashboard nav {
+  height: 70px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #101c15;
+  border-bottom: 1px solid #244d35;
+}
+
+.dashboard nav h2 {
+  color: #42e879;
+}
+
+.dashboard nav button {
+  padding: 10px 20px;
+  border: 1px solid #42e879;
+  border-radius: 7px;
+  background: transparent;
+  color: #42e879;
+  cursor: pointer;
+}
+
+.dashboard main {
+  padding: 50px;
+}
+
+.dashboard main h1 {
+  color: #42e879;
+}
+
+.dashboard-card {
+  margin-top: 30px;
+  padding: 30px;
+  max-width: 600px;
+  background: #101c15;
+  border: 1px solid #244d35;
+  border-radius: 12px;
+}
