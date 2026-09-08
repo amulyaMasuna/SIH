@@ -4,8 +4,9 @@ async function connectToDB() {
   const mongoUri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/legal_metrology";
   try {
     mongoose.set('strictQuery', false);
+    mongoose.set('bufferCommands', false);
     await mongoose.connect(mongoUri, {
-      serverSelectionTimeoutMS: 3000
+      serverSelectionTimeoutMS: 2000
     });
     console.log("Successfully connected to MongoDB Database:", mongoUri);
   } catch (err) {

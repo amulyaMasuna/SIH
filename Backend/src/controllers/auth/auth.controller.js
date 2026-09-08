@@ -13,6 +13,8 @@ function getAppUrl() {
 // In-memory user fallback if MongoDB is not connected
 const memoryUsers = [];
 
+const mongoose = require("mongoose");
+
 // Seed default users for instant evaluation
 async function seedDefaultUsers() {
   try {
@@ -21,53 +23,58 @@ async function seedDefaultUsers() {
     const passwordHash = await hashPassword("officer123");
     const consumerHash = await hashPassword("consumer123");
 
-    try {
-      const existingOfficer = await User.findOne({ email: defaultOfficerEmail });
-      if (!existingOfficer) {
-        await User.create({
-          email: defaultOfficerEmail,
-          passwordHash: passwordHash,
-          role: "officer",
-          name: "Dr. V. K. Malhotra",
-          isEmailVerified: true
-        });
-        console.log("Default Officer account seeded: officer@metrology.gov.in / officer123");
-      }
+    // Always seed in-memory users immediately for instant login
+    if (!memoryUsers.find(u => u.email === defaultOfficerEmail)) {
+      memoryUsers.push({
+        id: "mem-officer-1",
+        email: defaultOfficerEmail,
+        passwordHash: passwordHash,
+        role: "officer",
+        name: "Dr. V. K. Malhotra",
+        isEmailVerified: true,
+        tokenVersion: 0
+      });
+      console.log("Default Officer account ready: officer@metrology.gov.in / officer123");
+    }
+    if (!memoryUsers.find(u => u.email === defaultConsumerEmail)) {
+      memoryUsers.push({
+        id: "mem-consumer-1",
+        email: defaultConsumerEmail,
+        passwordHash: consumerHash,
+        role: "consumer",
+        name: "Aarav Mehta",
+        isEmailVerified: true,
+        tokenVersion: 0
+      });
+      console.log("Default Consumer account ready: consumer@citizen.in / consumer123");
+    }
 
-      const existingConsumer = await User.findOne({ email: defaultConsumerEmail });
-      if (!existingConsumer) {
-        await User.create({
-          email: defaultConsumerEmail,
-          passwordHash: consumerHash,
-          role: "consumer",
-          name: "Aarav Mehta",
-          isEmailVerified: true
-        });
-        console.log("Default Consumer account seeded: consumer@citizen.in / consumer123");
-      }
-    } catch (e) {
-      // Memory fallback seed
-      if (!memoryUsers.find(u => u.email === defaultOfficerEmail)) {
-        memoryUsers.push({
-          id: "mem-officer-1",
-          email: defaultOfficerEmail,
-          passwordHash: passwordHash,
-          role: "officer",
-          name: "Dr. V. K. Malhotra",
-          isEmailVerified: true,
-          tokenVersion: 0
-        });
-      }
-      if (!memoryUsers.find(u => u.email === defaultConsumerEmail)) {
-        memoryUsers.push({
-          id: "mem-consumer-1",
-          email: defaultConsumerEmail,
-          passwordHash: consumerHash,
-          role: "consumer",
-          name: "Aarav Mehta",
-          isEmailVerified: true,
-          tokenVersion: 0
-        });
+    // Also persist in MongoDB if connected
+    if (mongoose.connection && mongoose.connection.readyState === 1) {
+      try {
+        const existingOfficer = await User.findOne({ email: defaultOfficerEmail });
+        if (!existingOfficer) {
+          await User.create({
+            email: defaultOfficerEmail,
+            passwordHash: passwordHash,
+            role: "officer",
+            name: "Dr. V. K. Malhotra",
+            isEmailVerified: true
+          });
+        }
+
+        const existingConsumer = await User.findOne({ email: defaultConsumerEmail });
+        if (!existingConsumer) {
+          await User.create({
+            email: defaultConsumerEmail,
+            passwordHash: consumerHash,
+            role: "consumer",
+            name: "Aarav Mehta",
+            isEmailVerified: true
+          });
+        }
+      } catch (dbErr) {
+        // Fallback silently
       }
     }
   } catch (err) {
