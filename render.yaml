@@ -30,25 +30,25 @@ services:
         value: 5000
       - key: ALLOW_UNVERIFIED_LOGIN
         value: "true"
+      # REMOVED generateValue: true -> Set these 2 keys manually in the Render Dashboard
       - key: JWT_ACCESS_SECRET
-        generateValue: true
+        sync: false 
       - key: JWT_REFRESH_SECRET
-        generateValue: true
+        sync: false
       - key: PYTHON_SERVICE_URL
         fromService:
           type: web
           name: legal-metrology-python-service
           property: host
       - key: MONGO_URI
-        sync: false # Set via Render Dashboard with your MongoDB Atlas connection string
+        sync: false 
 
   # -------------------------------------------------------------
   # 3. React Frontend Portal (Vite Static Site)
   # -------------------------------------------------------------
-  - type: web
+  - type: static # Fixed from 'web' to 'static'
     name: legal-metrology-frontend
     env: static
-    plan: free
     rootDir: gitdem
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
