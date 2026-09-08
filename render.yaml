@@ -1,0 +1,67 @@
+services:
+  # -------------------------------------------------------------
+  # 1. Python OCR & Vision Engine (FastAPI)
+  # -------------------------------------------------------------
+  - type: web
+    name: legal-metrology-python-service
+    env: python
+    region: oregon
+    plan: free
+    rootDir: Python-Microservice
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+
+  # -------------------------------------------------------------
+  # 2. NodeJS Statutory Compliance Backend (Express)
+  # -------------------------------------------------------------
+  - type: web
+    name: legal-metrology-backend
+    env: node
+    region: oregon
+    plan: free
+    rootDir: Backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: ALLOW_UNVERIFIED_LOGIN
+        value: "true"
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: PYTHON_SERVICE_URL
+        fromService:
+          type: web
+          name: legal-metrology-python-service
+          property: host
+      - key: MONGO_URI
+        sync: false # Set via Render Dashboard with your MongoDB Atlas connection string
+
+  # -------------------------------------------------------------
+  # 3. React Frontend Portal (Vite Static Site)
+  # -------------------------------------------------------------
+  - type: web
+    name: legal-metrology-frontend
+    env: static
+    region: oregon
+    plan: free
+    rootDir: gitdem
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: legal-metrology-backend
+          property: host
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
