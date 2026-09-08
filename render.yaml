@@ -5,7 +5,6 @@ services:
   - type: web
     name: legal-metrology-python-service
     env: python
-    region: oregon
     plan: free
     rootDir: Python-Microservice
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
@@ -20,7 +19,6 @@ services:
   - type: web
     name: legal-metrology-backend
     env: node
-    region: oregon
     plan: free
     rootDir: Backend
     buildCommand: npm install
@@ -50,7 +48,6 @@ services:
   - type: web
     name: legal-metrology-frontend
     env: static
-    region: oregon
     plan: free
     rootDir: gitdem
     buildCommand: npm install && npm run build
