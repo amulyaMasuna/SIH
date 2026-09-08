@@ -5,52 +5,55 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #07110c;
+  background: #050807;
   color: white;
 }
 
-/* LOGIN / SIGNUP / FORGOT PASSWORD */
+/* Main page */
 
 .page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #07110c;
+  background: #050807;
 }
+
+/* Login box */
 
 .login-box {
   width: 420px;
   padding: 40px;
-  background: #101c15;
-  border: 1px solid #244d35;
+  background: #0D1711;
+  border: 1px solid #10B981;
   border-radius: 15px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(16, 185, 129, 0.12);
 }
 
 .login-box h1 {
   text-align: center;
-  color: #42e879;
+  color: #10B981;
   font-size: 40px;
-  margin-bottom: 5px;
+  margin-bottom: 30px;
 }
 
 .subtitle {
   text-align: center;
-  color: #9ca89f;
+  color: #A7B5AC;
   margin-bottom: 30px;
 }
 
 .login-box h2 {
   text-align: center;
   margin-bottom: 25px;
+  color: white;
 }
 
 .login-box label {
   display: block;
   margin-top: 15px;
   margin-bottom: 7px;
-  color: #d8e3dc;
+  color: #D8E3DC;
 }
 
 .login-box input,
@@ -58,8 +61,8 @@ body {
   width: 100%;
   padding: 13px;
   border-radius: 8px;
-  border: 1px solid #31583f;
-  background: #07110c;
+  border: 1px solid #31583F;
+  background: #050807;
   color: white;
   font-size: 15px;
 }
@@ -67,8 +70,10 @@ body {
 .login-box input:focus,
 .login-box select:focus {
   outline: none;
-  border-color: #42e879;
+  border-color: #10B981;
 }
+
+/* Login button */
 
 .login-button {
   width: 100%;
@@ -76,45 +81,47 @@ body {
   margin-top: 25px;
   border: none;
   border-radius: 8px;
-  background: #42e879;
-  color: #07110c;
+  background: #10B981;
+  color: #050807;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
 
 .login-button:hover {
-  background: #63f293;
+  background: #34D399;
 }
+
+/* Links */
 
 .link-button {
   display: block;
   margin: 18px auto;
   border: none;
   background: none;
-  color: #42e879;
+  color: #34D399;
   cursor: pointer;
 }
 
 .signup-text {
   text-align: center;
-  color: #9ca89f;
+  color: #A7B5AC;
 }
 
 .signup-button {
   border: none;
   background: none;
-  color: #42e879;
+  color: #34D399;
   cursor: pointer;
   font-size: 15px;
   margin-left: 5px;
 }
 
-/* DASHBOARD */
+/* Dashboard */
 
 .dashboard {
   min-height: 100vh;
-  background: #07110c;
+  background: #050807;
 }
 
 .dashboard nav {
@@ -123,20 +130,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #101c15;
-  border-bottom: 1px solid #244d35;
+  background: #0D1711;
+  border-bottom: 1px solid #31583F;
 }
 
 .dashboard nav h2 {
-  color: #42e879;
+  color: #10B981;
 }
 
 .dashboard nav button {
   padding: 10px 20px;
-  border: 1px solid #42e879;
+  border: 1px solid #10B981;
   border-radius: 7px;
   background: transparent;
-  color: #42e879;
+  color: #10B981;
   cursor: pointer;
 }
 
@@ -145,14 +152,14 @@ body {
 }
 
 .dashboard main h1 {
-  color: #42e879;
+  color: #10B981;
 }
 
 .dashboard-card {
   margin-top: 30px;
   padding: 30px;
   max-width: 600px;
-  background: #101c15;
-  border: 1px solid #244d35;
+  background: #0D1711;
+  border: 1px solid #31583F;
   border-radius: 12px;
 }

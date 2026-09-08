@@ -12,7 +12,7 @@ function App() {
         <div className="login-box">
 
           <h1>LegalLens</h1>
-          <p className="subtitle">Your Legal Assistance Platform</p>
+          {/* <p className="subtitle">Your Legal Assistance Platform</p> */}
 
           <h2>Login</h2>
 
