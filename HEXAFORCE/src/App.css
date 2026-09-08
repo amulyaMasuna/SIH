@@ -1,0 +1,172 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #101827;
+  color: #F4F5F7;
+}
+
+/* Main page */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #101827;
+}
+
+/* Login box */
+
+.login-box {
+  width: 420px;
+  padding: 40px;
+  background: #17243A;
+  border: 1px solid #3B82F6;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.login-box h1 {
+  text-align: center;
+  color: #F4F5F7;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #B8C0CC;
+  margin-bottom: 30px;
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #F4F5F7;
+}
+
+.login-box label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 7px;
+  color: #F4F5F7;
+}
+
+.login-box input,
+.login-box select {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid #28364D;
+  background: #101827;
+  color: #F4F5F7;
+  font-size: 15px;
+}
+
+.login-box input:focus,
+.login-box select:focus {
+  outline: none;
+  border-color: #3B82F6;
+}
+
+/* Login button */
+
+.login-button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 25px;
+  border: none;
+  border-radius: 8px;
+  background: #3B82F6;
+  color: #F4F5F7;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: #2563EB;
+}
+
+/* Links */
+
+.link-button {
+  display: block;
+  margin: 18px auto;
+  border: none;
+  background: none;
+  color: #60A5FA;
+  cursor: pointer;
+}
+
+.signup-text {
+  text-align: center;
+  color: #B8C0CC;
+}
+
+.signup-button {
+  border: none;
+  background: none;
+  color: #60A5FA;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+/* Dashboard */
+
+.dashboard {
+  min-height: 100vh;
+  background: #101827;
+}
+
+.dashboard nav {
+  height: 70px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #17243A;
+  border-bottom: 1px solid #28364D;
+}
+
+.dashboard nav h2 {
+  color: #F4F5F7;
+}
+
+.dashboard nav button {
+  padding: 10px 20px;
+  border: 1px solid #3B82F6;
+  border-radius: 7px;
+  background: transparent;
+  color: #60A5FA;
+  cursor: pointer;
+}
+
+.dashboard nav button:hover {
+  background: #3B82F6;
+  color: #F4F5F7;
+}
+
+.dashboard main {
+  padding: 50px;
+}
+
+.dashboard main h1 {
+  color: #F4F5F7;
+}
+
+.dashboard-card {
+  margin-top: 30px;
+  padding: 30px;
+  max-width: 600px;
+  background: #17243A;
+  border: 1px solid #28364D;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
