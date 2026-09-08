@@ -4,7 +4,7 @@ services:
   # -------------------------------------------------------------
   - type: web
     name: legal-metrology-python-service
-    env: python
+    runtime: python # Replaces 'env: python'
     plan: free
     rootDir: Python-Microservice
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
@@ -18,7 +18,7 @@ services:
   # -------------------------------------------------------------
   - type: web
     name: legal-metrology-backend
-    env: node
+    runtime: node # Replaces 'env: node'
     plan: free
     rootDir: Backend
     buildCommand: npm install
@@ -30,7 +30,6 @@ services:
         value: 5000
       - key: ALLOW_UNVERIFIED_LOGIN
         value: "true"
-      # REMOVED generateValue: true -> Set these 2 keys manually in the Render Dashboard
       - key: JWT_ACCESS_SECRET
         sync: false 
       - key: JWT_REFRESH_SECRET
@@ -46,9 +45,9 @@ services:
   # -------------------------------------------------------------
   # 3. React Frontend Portal (Vite Static Site)
   # -------------------------------------------------------------
-  - type: static # Fixed from 'web' to 'static'
+  - type: web # FIXED: Kept as 'web'
     name: legal-metrology-frontend
-    env: static
+    runtime: static # FIXED: Explicitly sets this as a Static Site
     rootDir: gitdem
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
