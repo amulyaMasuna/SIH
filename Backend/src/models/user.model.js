@@ -19,12 +19,6 @@ const userSchema = new mongoose.Schema({
     default: false,
   }, name: {
     type: String,
-  }, twoFactorEnabled: {
-    type: Boolean,
-    default: false,
-  }, twofactorSecret: {
-    type: String,
-    default: undefined
   }, tokenVersion: {
     type: Number,
     default: 0,
@@ -34,6 +28,8 @@ const userSchema = new mongoose.Schema({
   }, resetPasswordExpires: {
     type: Date,
     default: undefined,
+  }, uploadedLabels: {
+    type: Object,
   }
 }, {
   timestamps: true

@@ -20,4 +20,8 @@ function verifyRefreshToken(token) {
   return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
 }
 
-module.exports = { createAccessToken, createRefreshToken, verifyRefreshToken };
+function verifyAccessToken(token) {
+  return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+}
+
+module.exports = { createAccessToken, createRefreshToken, verifyRefreshToken, verifyAccessToken };

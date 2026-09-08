@@ -241,9 +241,8 @@ async function forgotPasswordHandler(req, res) {
     }
     const rawToken = crypto.randomBytes(32).toString("hex");
     const tokenHash = crypto.createHash('sha256').update(rawToken).digest("hex");
-    console.log(tokenHash);
     
-    User.findByIdAndUpdate(user.id, { 
+    await User.findByIdAndUpdate(user.id, { 
       resetPasswordExpires: new Date(Date.now() + (15 * 60 * 1000)), 
       resetPasswordToken: tokenHash,
     });
@@ -252,12 +251,12 @@ async function forgotPasswordHandler(req, res) {
 
     await sendEmail(user.email, "Reset Password", `
       <h1>Reset your password</h1>
-      <p>Click on the below link to reset password</p>
+      <p>Click on the below link to reset password. The link expires in 15 minutes.</p>
       <a href="${resetUrl}">${resetUrl}</a>
       `);
 
     return res.json({
-      message: "If an account with this email exists, we will send you a reset link"
+      message: "If an account with this email exists, we will send you a reset link",
     })
 
   } catch(err) {
@@ -284,7 +283,6 @@ async function resetPasswordHandler(req, res) {
 
   try {
     const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
-    console.log(tokenHash);
     const user = await User.findOne({ 
       resetPasswordToken: tokenHash,
       resetPasswordExpires: {$gt: new Date()}, // expiry must be in future
@@ -296,12 +294,12 @@ async function resetPasswordHandler(req, res) {
       })
     }
 
-    const newPasswordHash = hashPassword(password);
+    const newPasswordHash = await hashPassword(password);
     await User.findByIdAndUpdate(user.id, { 
       passwordHash: newPasswordHash, 
       resetPasswordExpires: undefined,
       resetPasswordToken: undefined,
-      tokenVersion: user.tokenVersion + 1,
+      tokenVersion: (user.tokenVersion || 0) + 1,
     });
 
     return res.json({
